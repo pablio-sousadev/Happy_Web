@@ -256,8 +256,8 @@ h1, h2, h3, h4, h5, h6, strong {
     transition: border-color 0.2s;
 }
 
-.profile-thumbs img:hover,
-.profile-thumbs img:focus {
+.profile-thumbs button:hover img,
+.profile-thumbs button:focus-visible img {
     border-color: var(--color-secondary);
 }
 

@@ -137,15 +137,28 @@
             const thumbs = $('profile-thumbs');
             const list = images && images.length ? images : [];
             if (photo) {
-                if (list.length) { photo.src = list[0]; photo.hidden = false; } else { photo.removeAttribute('src'); photo.hidden = true; }
+                const hasPhoto = list.length > 0;
+                photo.classList.toggle('d-none', !hasPhoto);
+                photo.hidden = !hasPhoto;
+                if (hasPhoto) photo.src = list[0];
+                else photo.removeAttribute('src');
             }
             if (thumbs) {
                 thumbs.replaceChildren();
+                thumbs.classList.toggle('d-none', list.length === 0);
                 list.forEach((src, i) => {
+                    const button = document.createElement('button');
+                    button.type = 'button';
+                    button.className = 'p-0 border-0 bg-transparent';
+                    button.setAttribute('aria-label', `Exibir foto ${i + 1}`);
                     const img = document.createElement('img');
-                    img.src = src; img.alt = `Foto ${i + 1}`;
-                    img.addEventListener('click', () => { if (photo) photo.src = src; });
-                    thumbs.appendChild(img);
+                    img.src = src;
+                    img.alt = `Foto ${i + 1}`;
+                    button.appendChild(img);
+                    button.addEventListener('click', () => {
+                        if (photo) photo.src = src;
+                    });
+                    thumbs.appendChild(button);
                 });
             }
         }
