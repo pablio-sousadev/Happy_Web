@@ -65,9 +65,161 @@
         <div id="map"></div>
 
         <!-- Add Orphanage Floating Button -->
-        <button class="create-orphanage" title="Cadastrar orfanato" aria-label="Cadastrar orfanato">
+        <button class="create-orphanage" data-view="create" title="Cadastrar orfanato" aria-label="Cadastrar orfanato">
             <i class="bi bi-plus"></i>
         </button>
+    </div>
+
+    <!-- Profile View (Orphanage Details) -->
+    <div id="profile-view" class="happy-map-page d-none">
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <header>
+                <img src="assets/marker.svg" alt="Happy Marker">
+                <h2>Detalhes do Orfanato</h2>
+                <p>Veja os detalhes do local que você escolheu.</p>
+            </header>
+            <footer>
+                <strong>Rio do Sul</strong>
+                <span>Santa Catarina</span>
+                <button data-view="map" title="Voltar ao mapa" aria-label="Voltar ao mapa">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+            </footer>
+        </aside>
+
+        <!-- Profile Content -->
+        <main class="profile-content">
+            <div class="profile-container">
+                <!-- Photo Gallery -->
+                <div class="profile-gallery mb-4">
+                    <img id="profile-photo" src="" alt="Foto do orfanato" class="profile-main-photo d-none" loading="lazy">
+                    <div id="profile-thumbs" class="profile-thumbs d-none"></div>
+                </div>
+
+                <!-- Title & Description -->
+                <h1 id="profile-name" class="profile-title"></h1>
+                <p id="profile-about" class="profile-description"></p>
+
+                <!-- Instructions -->
+                <div class="profile-instructions mb-4">
+                    <strong>Instruções de visita</strong>
+                    <p id="profile-instructions" class="mt-2"></p>
+                </div>
+
+                <!-- Map Link -->
+                <div class="profile-map-wrapper mb-4">
+                    <div id="profile-map" class="profile-map"></div>
+                    <a id="profile-route" href="#" class="profile-route-link" target="_blank" rel="noopener noreferrer">
+                        <i class="bi bi-arrow-right-circle"></i> Ver rotas no Google Maps
+                    </a>
+                </div>
+
+                <!-- Info Cards -->
+                <div class="profile-info-cards d-flex flex-column gap-3 mb-4">
+                    <div class="profile-info-card">
+                        <strong>Horário de visitas</strong>
+                        <span id="profile-hours" class="mt-1"></span>
+                    </div>
+                    <div id="profile-weekend" class="profile-info-card closed">
+                        <strong>Atende fim de semana</strong>
+                        <span id="profile-weekend-text" class="mt-1"></span>
+                    </div>
+                </div>
+
+                <!-- WhatsApp Button -->
+                <a id="profile-whatsapp" href="#" class="btn btn-success btn-lg w-100 profile-whatsapp-btn"
+                   target="_blank" rel="noopener noreferrer">
+                    <i class="bi bi-whatsapp me-2"></i> Entrar em contato
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <!-- Create View (01. Dados - Formulário) -->
+    <div id="create-view" class="happy-map-page d-none">
+        <!-- Sidebar -->
+        <aside class="app-sidebar">
+            <header>
+                <img src="assets/marker.svg" alt="Happy Marker">
+                <h2>Cadastrar Orfanato</h2>
+                <p>Preencha os dados para cadastrar um novo orfanato.</p>
+            </header>
+            <footer>
+                <strong>Rio do Sul</strong>
+                <span>Santa Catarina</span>
+                <button data-view="map" title="Voltar ao mapa" aria-label="Voltar ao mapa">
+                    <i class="bi bi-arrow-left"></i>
+                </button>
+            </footer>
+        </aside>
+
+        <!-- Form Content -->
+        <main class="create-content">
+            <form id="orphanage-form" class="create-form" action="#" method="post">
+                <!-- Form Error -->
+                <p id="form-error" class="form-error text-danger mb-3" role="alert" aria-live="polite"></p>
+
+                <!-- Nome -->
+                <div class="mb-3">
+                    <label for="name" class="form-label">Nome</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+
+                <!-- Sobre -->
+                <div class="mb-3">
+                    <label for="about" class="form-label">Sobre <span id="about-count" class="text-muted small">0/300</span></label>
+                    <textarea class="form-control" id="about" name="about" rows="4" maxlength="300" required></textarea>
+                    <div class="invalid-feedback">Descreva o orfanato (até 300 caracteres).</div>
+                </div>
+
+                <!-- WhatsApp -->
+                <div class="mb-3">
+                    <label for="whatsapp" class="form-label">WhatsApp</label>
+                    <input type="tel" class="form-control" id="whatsapp" name="whatsapp" required>
+                </div>
+
+                <!-- Imagens -->
+                <div class="mb-3">
+                    <label for="images" class="form-label">Imagens</label>
+                    <input type="file" class="form-control" id="images" name="images" accept="image/*" multiple>
+                    <div id="image-preview" class="image-previews d-flex flex-wrap gap-2 mt-2"></div>
+                </div>
+
+                <!-- Instruções -->
+                <div class="mb-3">
+                    <label for="instructions" class="form-label">Instruções</label>
+                    <textarea class="form-control" id="instructions" name="instructions" rows="3" required></textarea>
+                </div>
+
+                <!-- Horário de visitas -->
+                <div class="mb-3">
+                    <label for="hours" class="form-label">Horário de visitas</label>
+                    <input type="text" class="form-control" id="hours" name="hours" placeholder="Das 8h às 18h" required>
+                </div>
+
+                <!-- Atende fim de semana -->
+                <div class="mb-4">
+                    <label class="form-label">Atende fim de semana</label>
+                    <div class="d-flex gap-2">
+                        <button type="button" class="btn btn-outline-secondary toggle-btn" data-weekend="true">Sim</button>
+                        <button type="button" class="btn btn-outline-secondary toggle-btn" data-weekend="false">Não</button>
+                    </div>
+                    <input type="hidden" name="weekend" value="">
+                </div>
+
+                <!-- Mapa Interativo -->
+                <div class="mb-4">
+                    <label class="form-label">Localização (clique no mapa)</label>
+                    <div id="map-create" class="create-map" style="height: 300px; border-radius: 8px;"></div>
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <i class="bi bi-check-lg me-2"></i> Confirmar
+                </button>
+            </form>
+        </main>
     </div>
 
     <!-- Leaflet JS & Custom JS -->
