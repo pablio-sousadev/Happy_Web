@@ -1,99 +1,165 @@
-/* ===== Tokens ===== */
+/* ===== Happy App Design System (Figma Spec) ===== */
 :root {
-    --hw-blue: #0d6efd;
-    --hw-yellow: #ffc107;
-    --hw-ink: #1a1a1a;
-    --hw-radius: 12px;
-    --bs-body-font-family: 'Inter', system-ui, -apple-system, sans-serif;
-    --bs-body-color: #343a40;
-    --bs-body-line-height: 1.6;
-    --bs-heading-color: var(--hw-ink);
+    --happy-cyan-light: #29B6D1;
+    --happy-cyan-dark: #00C7C7;
+    --happy-yellow: #FFD666;
+    --happy-yellow-hover: #96FEFF;
+    --happy-bg: #EBF2F5;
+    --happy-text-title: #4D6F80;
+    --happy-text-body: #5C8599;
+    --happy-sidebar-gradient: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+    --font-family: 'Nunito', system-ui, -apple-system, sans-serif;
 }
 
-html { scroll-behavior: smooth; scroll-padding-top: 72px; }
-h1, h2, h3, h4, h5 { letter-spacing: -0.02em; }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
-/* ===== Navbar ===== */
-.navbar .nav-link { font-weight: 500; position: relative; }
-.navbar .nav-link::after {
+body {
+    font-family: var(--font-family);
+    background: var(--happy-bg);
+    color: var(--happy-text-body);
+    height: 100vh;
+    overflow: hidden;
+}
+
+.text-cyan { color: var(--happy-cyan-light) !important; }
+.text-slate { color: var(--happy-text-title) !important; }
+.btn-cyan {
+    background-color: var(--happy-cyan-light);
+    border: none;
+    transition: all 0.2s ease;
+}
+.btn-cyan:hover {
+    background-color: #15C3D6;
+    transform: scale(1.05);
+}
+
+/* ===== Landing Page ===== */
+.happy-landing {
+    height: 100vh;
+    width: 100vw;
+    background: var(--happy-sidebar-gradient);
+    position: relative;
+    overflow: hidden;
+}
+
+.happy-landing::before {
     content: '';
     position: absolute;
-    left: 0.5rem; right: 0.5rem; bottom: 2px;
-    height: 2px;
-    background: var(--hw-blue);
-    transform: scaleX(0);
-    transform-origin: left;
-    transition: transform .25s ease;
+    top: 50%;
+    right: -10%;
+    transform: translateY(-50%);
+    width: 60vw;
+    height: 60vw;
+    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
+    pointer-events: none;
 }
-.navbar .nav-link:hover::after,
-.navbar .nav-link.active::after { transform: scaleX(1); }
-.navbar .nav-link.active { color: var(--hw-blue); }
 
-/* ===== Hero ===== */
-.hero-section {
-    min-height: calc(100vh - 72px);
-    background: linear-gradient(135deg, #e7f1ff 0%, #fff6dd 100%);
-    padding: 4rem 0;
+.fw-extrabold { font-weight: 800; }
+.bg-white-10 { background: rgba(255, 255, 255, 0.15); }
+.backdrop-blur { backdrop-filter: blur(10px); }
+
+.enter-app-btn {
+    width: 80px;
+    height: 80px;
+    cursor: pointer;
 }
-.hero-section h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; }
-.hero-section .lead { max-width: 34rem; }
-
-/* ===== Buttons ===== */
-.btn { border-radius: 10px; font-weight: 600; transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
-.btn-primary {
-    --bs-btn-bg: var(--hw-yellow);
-    --bs-btn-border-color: var(--hw-yellow);
-    --bs-btn-color: var(--hw-ink);
-    --bs-btn-hover-bg: #e6ac00;
-    --bs-btn-hover-border-color: #e6ac00;
-    --bs-btn-hover-color: var(--hw-ink);
-    --bs-btn-active-bg: #d9a200;
-    --bs-btn-active-border-color: #d9a200;
-    --bs-btn-active-color: var(--hw-ink);
+.enter-app-btn:hover {
+    background-color: #96FEFF !important;
+    transform: scale(1.08);
 }
-.btn-outline-primary {
-    --bs-btn-color: var(--hw-blue);
-    --bs-btn-border-color: var(--hw-blue);
-    --bs-btn-hover-bg: var(--hw-blue);
-    --bs-btn-hover-border-color: var(--hw-blue);
+
+/* ===== Map Page ===== */
+.happy-map-page {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
 }
-.btn:hover { transform: translateY(-2px); }
-.btn:focus-visible { outline: 3px solid rgba(13, 110, 253, .45); outline-offset: 2px; }
 
-/* ===== Cards ===== */
-.card { border-radius: var(--hw-radius); }
-.card-hover { transition: transform .25s ease, box-shadow .25s ease; }
-.card-hover:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .1) !important; }
-.card-hover .display-4 { font-size: 2.5rem; line-height: 1; }
+.happy-sidebar {
+    width: 380px;
+    background: var(--happy-sidebar-gradient);
+    flex-shrink: 0;
+    z-index: 100;
+}
 
-/* ===== Footer ===== */
-footer { background: #212529; }
-footer .nav-link { color: rgba(255, 255, 255, .75) !important; transition: color .2s ease; }
-footer .nav-link:hover { color: var(--hw-yellow) !important; }
+.happy-map-area {
+    height: 100%;
+    width: 100%;
+}
+
+.btn-create-orphanage {
+    width: 64px;
+    height: 64px;
+    cursor: pointer;
+}
 
 /* ===== Responsivo ===== */
 @media (max-width: 991.98px) {
-    .hero-section { min-height: auto; padding: 3rem 0; }
-}
-@media (max-width: 575.98px) {
-    .hero-section { text-align: center; }
-    .hero-section .d-flex.flex-wrap { justify-content: center; }
-    .hero-section .btn { width: 100%; }
-}
-@media (prefers-reduced-motion: reduce) {
-    html { scroll-behavior: auto; }
-    * { transition: none !important; }
+    body {
+        overflow-y: auto;
+    }
+
+    .happy-landing {
+        height: auto;
+        min-height: 100vh;
+        overflow: visible;
+    }
+
+    .happy-landing > .container-fluid,
+    .happy-landing .row {
+        height: auto !important;
+        min-height: 100vh;
+    }
+
+    .happy-landing .col-lg-5,
+    .happy-landing .col-lg-7 {
+        height: auto !important;
+        min-height: 40vh;
+    }
+
+    .happy-landing .col-lg-7 {
+        padding-bottom: 2rem;
+    }
+
+    .happy-cards-preview {
+        max-width: 100%;
+    }
+
+    .happy-map-page {
+        flex-direction: column;
+        height: 100vh;
+    }
+
+    .happy-sidebar {
+        width: 100%;
+        min-height: auto;
+    }
+
+    .happy-map-area {
+        min-height: 60vh;
+    }
 }
 
-/* ===== Ícone dos cards ===== */
-.icon-badge {
-    display: grid;
-    place-items: center;
-    width: 4rem; height: 4rem;
-    border-radius: 1rem;
-    background: rgba(255, 193, 7, .18);
-    color: #b88600;
-    font-size: 1.75rem;
+@media (max-width: 575.98px) {
+    .happy-landing .row {
+        padding-inline: 1rem;
+    }
+
+    .landing-hero-text h2 {
+        font-size: clamp(2.25rem, 12vw, 3.5rem);
+    }
+
+    .happy-cards-preview {
+        display: flex !important;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .happy-cards-preview > .bg-white {
+        width: 100%;
+    }
 }
-.card-body p { line-height: 1.6; }
-.navbar { backdrop-filter: saturate(1.2); }

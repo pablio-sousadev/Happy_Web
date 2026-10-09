@@ -3,265 +3,126 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Web</title>
+    <title>Happy | Leve felicidade para o mundo</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
+    <!-- Google Fonts: Nunito -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <!-- Bootstrap Icons & Leaflet CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg bg-white border-bottom sticky-top">
-        <div class="container">
-            <a class="navbar-brand d-flex align-items-center" href="#">
-                <span class="text-primary fw-bold fs-4">Happy</span><span class="text-warning fw-bold fs-4">.Web</span>
-            </a>
-            <button class="navbar-toggler border-0" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
+    <!-- Landing View -->
+    <div id="landing-view" class="happy-landing">
+        <div class="container-fluid h-100">
+            <div class="row h-100 align-items-center position-relative px-lg-5">
+
+                <!-- Content Left -->
+                <div class="col-lg-5 d-flex flex-column justify-content-between h-75 z-2 py-4">
+                    <!-- Brand -->
+                    <div class="brand-header d-flex align-items-center gap-3">
+                        <div class="logo-icon bg-warning rounded-4 d-flex align-items-center justify-content-center p-3 shadow-sm">
+                            <i class="bi bi-emoji-smile-fill text-white fs-2"></i>
+                        </div>
+                        <h1 class="logo-text fw-extrabold m-0 display-5 text-white">happy</h1>
+                    </div>
+
+                    <!-- Main Text -->
+                    <div class="landing-hero-text my-auto">
+                        <h2 class="display-3 fw-bold text-white mb-4 leading-tight">Leve felicidade para o mundo</h2>
+                        <p class="fs-4 text-white-50 mb-0 max-w-md">Visite orfanatos e mude o dia de muitas crianças.</p>
+                    </div>
+
+                    <!-- Location Footer -->
+                    <div class="location-info text-white">
+                        <strong class="d-block fs-5 fw-bold">Rio do Sul</strong>
+                        <span class="text-white-50">Santa Catarina</span>
+                    </div>
+                </div>
+
+                <!-- Content Right / Hero Illustration & Action -->
+                <div class="col-lg-7 d-flex flex-column align-items-lg-end justify-content-between h-75 position-relative z-2">
+
+                    <!-- Location Selector Desktop -->
+                    <div class="location-badge text-end text-white d-none d-lg-block">
+                        <strong class="d-block fs-5 fw-bold">Rio do Sul</strong>
+                        <span class="text-white-50">Santa Catarina</span>
+                    </div>
+
+                    <!-- Hero Visual -->
+                    <div class="hero-illustration my-auto w-100 text-center">
+                        <div class="happy-cards-preview d-inline-flex gap-3 p-3 bg-white-10 rounded-4 backdrop-blur shadow-lg align-items-center">
+                            <div class="bg-white rounded-3 p-3 text-start text-dark shadow-sm flex-grow-1">
+                                <div class="d-flex align-items-center gap-2 mb-2">
+                                    <i class="bi bi-geo-alt-fill text-cyan"></i>
+                                    <span class="fw-bold text-slate">Orfanato Esperança</span>
+                                </div>
+                                <small class="text-muted d-block">Atendimento das 8h às 18h</small>
+                            </div>
+                            <button class="btn btn-warning rounded-4 p-3 d-flex align-items-center justify-content-center shadow" onclick="toggleView('map')" title="Ver no mapa" aria-label="Ver orfanatos no mapa">
+                                <i class="bi bi-arrow-right fs-3 text-dark"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Action Button -->
+                    <div class="action-wrapper">
+                        <button onclick="toggleView('map')" class="enter-app-btn bg-warning text-dark border-0 rounded-4 d-flex align-items-center justify-content-center shadow-lg transition-all" title="Entrar no aplicativo" aria-label="Entrar no aplicativo">
+                            <i class="bi bi-arrow-right fs-1"></i>
+                        </button>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Map View (App View) -->
+    <div id="map-view" class="happy-map-page d-none">
+        <!-- Sidebar -->
+        <aside class="happy-sidebar d-flex flex-column justify-content-between p-4">
+            <div>
+                <div class="brand-header d-flex align-items-center gap-2 mb-4">
+                    <div class="logo-icon bg-warning rounded-3 p-2 d-flex align-items-center justify-content-center">
+                        <i class="bi bi-emoji-smile-fill text-white fs-4"></i>
+                    </div>
+                    <span class="logo-text fw-bold fs-3 text-white">happy</span>
+                </div>
+                <h2 class="fs-4 text-white fw-bold mb-3">Escolha um orfanato no mapa</h2>
+                <p class="text-white-50 fs-6">Muitas crianças estão esperando a sua visita :)</p>
+            </div>
+
+            <div class="sidebar-footer">
+                <div class="location text-white mb-4">
+                    <strong class="d-block">Rio do Sul</strong>
+                    <span class="text-white-50">Santa Catarina</span>
+                </div>
+                <button onclick="toggleView('landing')" class="btn btn-outline-light w-100 rounded-3 d-flex align-items-center justify-content-center gap-2">
+                    <i class="bi bi-arrow-left"></i> Voltar para início
+                </button>
+            </div>
+        </aside>
+
+        <!-- Map Area -->
+        <main class="happy-map-area position-relative flex-grow-1">
+            <div id="map" class="h-100 w-100"></div>
+
+            <!-- Add Orphanage Floating Button -->
+            <button class="btn-create-orphanage btn btn-cyan text-white rounded-4 shadow-lg p-3 position-absolute bottom-0 end-0 m-4 z-3 d-flex align-items-center justify-content-center" title="Cadastrar orfanato" aria-label="Cadastrar orfanato">
+                <i class="bi bi-plus-lg fs-2"></i>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link active" href="#hero">Início</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#features">Recursos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#testimonials">Depoimentos</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#contact">Contato</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+        </main>
+    </div>
 
-    <!-- Hero -->
-    <section class="hero-section d-flex align-items-center text-center text-lg-start" id="hero">
-        <div class="container">
-            <div class="row align-items-center">
-                <div class="col-lg-6 mb-5 mb-lg-0">
-                    <h1 class="display-4 fw-bold mb-3">Transforme sua experiência web</h1>
-                    <p class="lead text-muted mb-4">
-                        Uma plataforma incrível para conectar, criar e compartilhar momentos felizes.
-                    </p>
-                    <div class="d-flex flex-wrap gap-3">
-                        <a href="#features" class="btn btn-primary btn-lg px-4 py-2">Ver Recursos</a>
-                        <a href="#contact" class="btn btn-outline-primary btn-lg px-4 py-2">Fale Conosco</a>
-                    </div>
-                </div>
-                <div class="col-lg-6">
-                    <div class="hero-illustration d-flex justify-content-center">
-                        <img src="assets/hero-image.svg" alt="Ilustração da plataforma Happy Web" class="img-fluid rounded-4 shadow-sm"
-                            fetchpriority="high">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Features / Card Grid -->
-    <section class="py-5 bg-light" id="features">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">Por que escolher Happy Web?</h2>
-                <p class="text-muted">Soluções pensadas para seu dia a dia</p>
-            </div>
-
-            <div class="row g-4">
-                <!-- Card 1 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm card-hover">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-badge mx-auto mb-3">
-                                <i class="bi bi-lightbulb" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="h5 fw-semibold mb-3">Inovação Constante</h3>
-                            <p class="text-muted small">
-                                Soluções criativas e modernas para os desafios do seu dia a dia.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 2 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm card-hover">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-badge mx-auto mb-3">
-                                <i class="bi bi-rocket" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="h5 fw-semibold mb-3">Rápido e Leve</h3>
-                            <p class="text-muted small">
-                                Performance otimizada para que você não perca tempo.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 3 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm card-hover">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-badge mx-auto mb-3">
-                                <i class="bi bi-shield-lock" aria-hidden="true"></i>
-                            </div>
-                            <h3 class="h5 fw-semibold mb-3">Totalmente Seguro</h3>
-                            <p class="text-muted small">
-                                Seus dados são protegidos com as melhores práticas do mercado.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 4 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm card-hover">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-badge mx-auto mb-3">
-                                <i class="bi bi-graph-up-arrow"></i>
-                            </div>
-                            <h3 class="h5 fw-semibold mb-3">Crescimento Garantido</h3>
-                            <p class="text-muted small">
-                                Ferramentas que impulsionam seu sucesso de forma sustentável.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 5 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm card-hover">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-badge mx-auto mb-3">
-                                <i class="bi bi-heart"></i>
-                            </div>
-                            <h3 class="h5 fw-semibold mb-3">Feito com Amor</h3>
-                            <p class="text-muted small">
-                                Cada detalhe é pensado para oferecer a melhor experiência.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Card 6 -->
-                <div class="col-md-6 col-lg-4">
-                    <div class="card h-100 border-0 shadow-sm card-hover">
-                        <div class="card-body text-center p-4">
-                            <div class="icon-badge mx-auto mb-3">
-                                <i class="bi bi-globe2"></i>
-                            </div>
-                            <h3 class="h5 fw-semibold mb-3">Acesso Global</h3>
-                            <p class="text-muted small">
-                                Disponível em todos os dispositivos, onde você estiver.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-5" id="testimonials">
-        <div class="container">
-            <div class="text-center mb-5">
-                <h2 class="fw-bold">O que nossos clientes dizem</h2>
-                <p class="text-muted">Depoimentos reais de quem já transformou sua experiência</p>
-            </div>
-
-            <div class="row justify-content-center">
-                <div class="col-lg-8">
-                    <div class="card border-0 shadow-sm p-4 text-center">
-                        <div class="card-body">
-                            <p class="fs-5 fst-italic text-muted">
-                                "O Happy Web revolucionou a forma como trabalhamos. Simples, intuitivo e incrivelmente rápido!"
-                            </p>
-                            <div class="mt-4">
-                                <img src="assets/avatar-placeholder.svg" alt="Cliente"
-                                    class="rounded-circle mb-2 border border-3 border-primary" width="60" height="60">
-                                <h5 class="fw-semibold mb-1">Maria Silva</h5>
-                                <p class="text-muted small mb-0">CEO da Tech Solutions</p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="bg-dark text-light py-5 mt-5">
-        <div class="container">
-            <div class="row g-4">
-                <!-- Brand & Description -->
-                <div class="col-lg-4">
-                    <a class="navbar-brand d-flex align-items-center text-light text-decoration-none" href="#">
-                        <span class="fw-bold fs-4">Happy</span><span class="text-warning fw-bold fs-4">.Web</span>
-                    </a>
-                    <p class="text-light opacity-75 mt-3">
-                        Conectando pessoas e ideias para um futuro mais feliz.
-                    </p>
-                    <div class="d-flex gap-3 mt-4">
-                        <a href="#" aria-label="Facebook" class="text-light text-decoration-none fs-5"><i class="bi bi-facebook"></i></a>
-                        <a href="#" aria-label="X" class="text-light text-decoration-none fs-5"><i class="bi bi-twitter-x"></i></a>
-                        <a href="#" aria-label="Instagram" class="text-light text-decoration-none fs-5"><i class="bi bi-instagram"></i></a>
-                        <a href="#" aria-label="LinkedIn" class="text-light text-decoration-none fs-5"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-
-                <!-- Links -->
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="fw-semibold mb-4">Links</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#hero" class="nav-link text-light text-decoration-none p-0">Início</a></li>
-                        <li class="nav-item mb-2"><a href="#features" class="nav-link text-light text-decoration-none p-0">Recursos</a></li>
-                        <li class="nav-item mb-2"><a href="#testimonials" class="nav-link text-light text-decoration-none p-0">Depoimentos</a></li>
-                        <li class="nav-item mb-2"><a href="#contact" class="nav-link text-light text-decoration-none p-0">Contato</a></li>
-                    </ul>
-                </div>
-
-                <!-- Resources -->
-                <div class="col-lg-2 col-md-4">
-                    <h5 class="fw-semibold mb-4">Recursos</h5>
-                    <ul class="nav flex-column">
-                        <li class="nav-item mb-2"><a href="#" class="nav-link text-light text-decoration-none p-0">Blog</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link text-light text-decoration-none p-0">Documentação</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link text-light text-decoration-none p-0">Suporte</a></li>
-                        <li class="nav-item mb-2"><a href="#" class="nav-link text-light text-decoration-none p-0">Política de Privacidade</a></li>
-                    </ul>
-                </div>
-
-                <!-- Newsletter -->
-                <div class="col-lg-4 col-md-12" id="contact">
-                    <h5 class="fw-semibold mb-4">Fique por dentro</h5>
-                    <p class="text-light opacity-75">
-                        Inscreva-se e receba as novidades em primeiro lugar.
-                    </p>
-                    <form class="d-flex flex-column gap-3 mt-3">
-                        <input type="email" class="form-control" placeholder="Seu e-mail" required>
-                        <button type="submit" class="btn btn-warning text-dark fw-semibold">Inscrever-se</button>
-                    </form>
-                </div>
-            </div>
-
-            <div class="border-top border-secondary mt-5 pt-4 text-center text-light opacity-75 small">
-                <span>&copy; 2026 Happy Web. Todos os direitos reservados.</span>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Bootstrap 5 JS + Icons -->
+    <!-- Bootstrap & Leaflet JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script src="js/main.js"></script>
 </body>
 </html>
