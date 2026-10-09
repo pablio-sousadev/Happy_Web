@@ -1,0 +1,99 @@
+/* ===== Tokens ===== */
+:root {
+    --hw-blue: #0d6efd;
+    --hw-yellow: #ffc107;
+    --hw-ink: #1a1a1a;
+    --hw-radius: 12px;
+    --bs-body-font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    --bs-body-color: #343a40;
+    --bs-body-line-height: 1.6;
+    --bs-heading-color: var(--hw-ink);
+}
+
+html { scroll-behavior: smooth; scroll-padding-top: 72px; }
+h1, h2, h3, h4, h5 { letter-spacing: -0.02em; }
+
+/* ===== Navbar ===== */
+.navbar .nav-link { font-weight: 500; position: relative; }
+.navbar .nav-link::after {
+    content: '';
+    position: absolute;
+    left: 0.5rem; right: 0.5rem; bottom: 2px;
+    height: 2px;
+    background: var(--hw-blue);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform .25s ease;
+}
+.navbar .nav-link:hover::after,
+.navbar .nav-link.active::after { transform: scaleX(1); }
+.navbar .nav-link.active { color: var(--hw-blue); }
+
+/* ===== Hero ===== */
+.hero-section {
+    min-height: calc(100vh - 72px);
+    background: linear-gradient(135deg, #e7f1ff 0%, #fff6dd 100%);
+    padding: 4rem 0;
+}
+.hero-section h1 { font-size: clamp(2rem, 5vw, 3.5rem); line-height: 1.1; }
+.hero-section .lead { max-width: 34rem; }
+
+/* ===== Buttons ===== */
+.btn { border-radius: 10px; font-weight: 600; transition: transform .2s ease, box-shadow .2s ease, background-color .2s ease; }
+.btn-primary {
+    --bs-btn-bg: var(--hw-yellow);
+    --bs-btn-border-color: var(--hw-yellow);
+    --bs-btn-color: var(--hw-ink);
+    --bs-btn-hover-bg: #e6ac00;
+    --bs-btn-hover-border-color: #e6ac00;
+    --bs-btn-hover-color: var(--hw-ink);
+    --bs-btn-active-bg: #d9a200;
+    --bs-btn-active-border-color: #d9a200;
+    --bs-btn-active-color: var(--hw-ink);
+}
+.btn-outline-primary {
+    --bs-btn-color: var(--hw-blue);
+    --bs-btn-border-color: var(--hw-blue);
+    --bs-btn-hover-bg: var(--hw-blue);
+    --bs-btn-hover-border-color: var(--hw-blue);
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible { outline: 3px solid rgba(13, 110, 253, .45); outline-offset: 2px; }
+
+/* ===== Cards ===== */
+.card { border-radius: var(--hw-radius); }
+.card-hover { transition: transform .25s ease, box-shadow .25s ease; }
+.card-hover:hover { transform: translateY(-4px); box-shadow: 0 .75rem 1.5rem rgba(0, 0, 0, .1) !important; }
+.card-hover .display-4 { font-size: 2.5rem; line-height: 1; }
+
+/* ===== Footer ===== */
+footer { background: #212529; }
+footer .nav-link { color: rgba(255, 255, 255, .75) !important; transition: color .2s ease; }
+footer .nav-link:hover { color: var(--hw-yellow) !important; }
+
+/* ===== Responsivo ===== */
+@media (max-width: 991.98px) {
+    .hero-section { min-height: auto; padding: 3rem 0; }
+}
+@media (max-width: 575.98px) {
+    .hero-section { text-align: center; }
+    .hero-section .d-flex.flex-wrap { justify-content: center; }
+    .hero-section .btn { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    * { transition: none !important; }
+}
+
+/* ===== Ícone dos cards ===== */
+.icon-badge {
+    display: grid;
+    place-items: center;
+    width: 4rem; height: 4rem;
+    border-radius: 1rem;
+    background: rgba(255, 193, 7, .18);
+    color: #b88600;
+    font-size: 1.75rem;
+}
+.card-body p { line-height: 1.6; }
+.navbar { backdrop-filter: saturate(1.2); }
