@@ -1,165 +1,292 @@
-/* ===== Happy App Design System (Figma Spec) ===== */
 :root {
-    --happy-cyan-light: #29B6D1;
-    --happy-cyan-dark: #00C7C7;
-    --happy-yellow: #FFD666;
-    --happy-yellow-hover: #96FEFF;
-    --happy-bg: #EBF2F5;
-    --happy-text-title: #4D6F80;
-    --happy-text-body: #5C8599;
-    --happy-sidebar-gradient: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
-    --font-family: 'Nunito', system-ui, -apple-system, sans-serif;
+  --color-primary: #29b6d1;
+  --color-primary-dark: #00c7c7;
+  --color-secondary: #ffd666;
+  --color-secondary-hover: #96feff;
+  --color-text-title: #ffffff;
+  --color-text-base: #5c8599;
+  --color-bg: #ebf2f5;
 }
 
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
 body {
-    font-family: var(--font-family);
-    background: var(--happy-bg);
-    color: var(--happy-text-body);
-    height: 100vh;
-    overflow: hidden;
+  color: var(--color-text-title);
+  background: var(--color-bg);
+  font-family: 'Nunito', sans-serif;
+  font-weight: 600;
 }
 
-.text-cyan { color: var(--happy-cyan-light) !important; }
-.text-slate { color: var(--happy-text-title) !important; }
-.btn-cyan {
-    background-color: var(--happy-cyan-light);
-    border: none;
-    transition: all 0.2s ease;
-}
-.btn-cyan:hover {
-    background-color: #15C3D6;
-    transform: scale(1.05);
+h1, h2, h3, h4, h5, h6, strong {
+  font-weight: 800;
 }
 
-/* ===== Landing Page ===== */
+/* ================== LANDING PAGE ================== */
 .happy-landing {
-    height: 100vh;
-    width: 100vw;
-    background: var(--happy-sidebar-gradient);
-    position: relative;
-    overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  background: linear-gradient(329.54deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.happy-landing::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    right: -10%;
-    transform: translateY(-50%);
-    width: 60vw;
-    height: 60vw;
-    background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0) 70%);
-    pointer-events: none;
+#page-landing {
+  width: 100%;
+  max-width: 1100px;
+  height: 100%;
+  max-height: 680px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.fw-extrabold { font-weight: 800; }
-.bg-white-10 { background: rgba(255, 255, 255, 0.15); }
-.backdrop-blur { backdrop-filter: blur(10px); }
-
-.enter-app-btn {
-    width: 80px;
-    height: 80px;
-    cursor: pointer;
-}
-.enter-app-btn:hover {
-    background-color: #96FEFF !important;
-    transform: scale(1.08);
+.content-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background: url('../assets/kids.svg') no-repeat 80% center;
 }
 
-/* ===== Map Page ===== */
+.content-wrapper > img {
+  width: 214px;
+}
+
+.content-wrapper main {
+  max-width: 350px;
+}
+
+.content-wrapper main h1 {
+  font-size: 76px;
+  font-weight: 900;
+  line-height: 70px;
+}
+
+.content-wrapper main p {
+  margin-top: 40px;
+  font-size: 24px;
+  line-height: 34px;
+}
+
+.content-wrapper .location {
+  position: absolute;
+  right: 0;
+  top: 0;
+  font-size: 24px;
+  line-height: 34px;
+  display: flex;
+  flex-direction: column;
+  text-align: right;
+}
+
+.content-wrapper .location strong {
+  font-weight: 800;
+}
+
+.content-wrapper .enter-app {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 80px;
+  height: 80px;
+  background: var(--color-secondary);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.content-wrapper .enter-app:hover {
+  background: var(--color-secondary-hover);
+  transform: scale(1.05);
+}
+
+.content-wrapper .enter-app i {
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+/* ================== MAP PAGE ================== */
 .happy-map-page {
-    display: flex;
-    height: 100vh;
-    width: 100vw;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  position: relative;
 }
 
-.happy-sidebar {
-    width: 380px;
-    background: var(--happy-sidebar-gradient);
-    flex-shrink: 0;
-    z-index: 100;
+.app-sidebar {
+  width: 440px;
+  background: linear-gradient(329.54deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+  padding: 80px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 10;
 }
 
-.happy-map-area {
-    height: 100%;
+.app-sidebar h2 {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 42px;
+  margin-top: 64px;
+}
+
+.app-sidebar p {
+  line-height: 28px;
+  margin-top: 24px;
+}
+
+.app-sidebar footer {
+  display: flex;
+  flex-direction: column;
+  line-height: 24px;
+  margin-top: 48px;
+}
+
+.app-sidebar footer strong {
+  font-weight: 800;
+}
+
+.app-sidebar footer button {
+  width: 48px;
+  height: 48px;
+  border: 0;
+  background: #12AFCB;
+  border-radius: 16px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 32px;
+}
+
+.app-sidebar footer button:hover {
+  background: #17D6EB;
+}
+
+.app-sidebar footer button i {
+  color: #fff;
+  font-size: 24px;
+}
+
+#map {
+  flex: 1;
+  width: 100%;
+  height: 100%;
+  z-index: 5;
+}
+
+.create-orphanage {
+  position: absolute;
+  right: 40px;
+  bottom: 40px;
+  z-index: 10;
+  width: 64px;
+  height: 64px;
+  background: #15c3d6;
+  border-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0;
+  cursor: pointer;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.create-orphanage:hover {
+  background: #17d6eb;
+  transform: scale(1.05);
+}
+
+.create-orphanage i {
+  color: #fff;
+  font-size: 32px;
+}
+
+/* ================== LEAFLET POPUP CUSTOMIZATION ================== */
+.leaflet-popup-content-wrapper {
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  box-shadow: 17.2868px 27.6589px 41.4884px rgba(23, 142, 166, 0.16);
+}
+
+.leaflet-popup-content {
+  color: #0089a5;
+  font-size: 20px;
+  font-weight: 700;
+  margin: 8px 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.leaflet-popup-content a {
+  width: 40px;
+  height: 40px;
+  background: #15c3d6;
+  box-shadow: 17.2868px 27.6589px 41.4884px rgba(23, 142, 166, 0.16);
+  border-radius: 12px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.leaflet-popup-content a i {
+  color: white;
+  font-size: 20px;
+}
+
+.leaflet-popup-tip-container {
+  display: none;
+}
+
+/* ================== RESPONSIVE ================== */
+@media (max-width: 1100px) {
+  .content-wrapper {
+    background-position: center bottom;
+    background-size: 400px;
+    align-items: center;
+    text-align: center;
+    padding-bottom: 200px;
+  }
+  .content-wrapper .location {
+    top: 20px;
+    right: 20px;
+    text-align: right;
+  }
+  .content-wrapper > img {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 768px) {
+  .app-sidebar {
+    position: absolute;
+    bottom: 0;
     width: 100%;
+    height: auto;
+    padding: 20px;
+    flex-direction: row;
+    align-items: center;
+    z-index: 100;
+  }
+  .app-sidebar header h2, .app-sidebar header p, .app-sidebar footer strong, .app-sidebar footer span {
+    display: none;
+  }
+  .app-sidebar footer {
+    margin-top: 0;
+  }
+  .app-sidebar footer button {
+    margin-top: 0;
+  }
+  .create-orphanage {
+    bottom: 100px;
+  }
 }
-
-.btn-create-orphanage {
-    width: 64px;
-    height: 64px;
-    cursor: pointer;
-}
-
-/* ===== Responsivo ===== */
-@media (max-width: 991.98px) {
-    body {
-        overflow-y: auto;
-    }
-
-    .happy-landing {
-        height: auto;
-        min-height: 100vh;
-        overflow: visible;
-    }
-
-    .happy-landing > .container-fluid,
-    .happy-landing .row {
-        height: auto !important;
-        min-height: 100vh;
-    }
-
-    .happy-landing .col-lg-5,
-    .happy-landing .col-lg-7 {
-        height: auto !important;
-        min-height: 40vh;
-    }
-
-    .happy-landing .col-lg-7 {
-        padding-bottom: 2rem;
-    }
-
-    .happy-cards-preview {
-        max-width: 100%;
-    }
-
-    .happy-map-page {
-        flex-direction: column;
-        height: 100vh;
-    }
-
-    .happy-sidebar {
-        width: 100%;
-        min-height: auto;
-    }
-
-    .happy-map-area {
-        min-height: 60vh;
-    }
-}
-
-@media (max-width: 575.98px) {
-    .happy-landing .row {
-        padding-inline: 1rem;
-    }
-
-    .landing-hero-text h2 {
-        font-size: clamp(2.25rem, 12vw, 3.5rem);
-    }
-
-    .happy-cards-preview {
-        display: flex !important;
-        flex-direction: column;
-        width: 100%;
-    }
-
-    .happy-cards-preview > .bg-white {
-        width: 100%;
-    }
-}
+.d-none { display: none !important; }
