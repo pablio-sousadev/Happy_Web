@@ -17,6 +17,13 @@
     });
 
     // Dados fictícios (mock). Novos cadastros são adicionados em memória.
+    // Fotos de exemplo (SVG embutido, sem dependência externa)
+    const samplePhotos = (hue) => Array.from({ length: 6 }, (_, i) => {
+        const h = (hue + i * 25) % 360;
+        const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="800" height="600"><defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="hsl(${h},70%,70%)"/><stop offset="1" stop-color="hsl(${(h + 40) % 360},70%,50%)"/></linearGradient></defs><rect width="800" height="600" fill="url(#g)"/><text x="400" y="320" font-family="sans-serif" font-size="64" fill="white" text-anchor="middle">Foto ${i + 1}</text></svg>`;
+        return 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+    });
+
     const ORPHANAGES = [
         {
             id: 1,
@@ -28,7 +35,14 @@
             hours: 'Das 8h às 18h',
             openOnWeekends: true,
             whatsapp: '5547999999999',
-            images: []
+            images: [
+                'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=708&q=80'
+            ]
         },
         {
             id: 2,
@@ -40,7 +54,14 @@
             hours: 'Das 9h às 17h',
             openOnWeekends: false,
             whatsapp: '5547988888888',
-            images: []
+            images: [
+                'https://images.unsplash.com/photo-1516627145497-ae6968895b74?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1488521787991-ed7bbaae773c?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1540479859555-17af45c78602?auto=format&fit=crop&w=708&q=80',
+                'https://images.unsplash.com/photo-1526470608268-f674ce90ebd4?auto=format&fit=crop&w=708&q=80'
+            ]
         }
     ];
     let nextId = ORPHANAGES.length + 1;
@@ -141,7 +162,7 @@
                 list.forEach((src, i) => {
                     const button = document.createElement('button');
                     button.type = 'button';
-                    button.className = 'p-0 border-0 bg-transparent';
+                    button.className = i === 0 ? 'active' : '';
                     button.setAttribute('aria-label', `Exibir foto ${i + 1}`);
                     const img = document.createElement('img');
                     img.src = src;
@@ -149,6 +170,7 @@
                     button.appendChild(img);
                     button.addEventListener('click', () => {
                         if (photo) photo.src = src;
+                        thumbs.querySelectorAll('button').forEach((b) => b.classList.toggle('active', b === button));
                     });
                     thumbs.appendChild(button);
                 });
@@ -182,7 +204,7 @@
 
             const wk = $('profile-weekend');
             if (wk) { wk.classList.toggle('open', o.openOnWeekends); wk.classList.toggle('closed', !o.openOnWeekends); }
-            setText('profile-weekend-text', o.openOnWeekends ? 'Atendemos fim de semana' : 'Não atendemos fim de semana');
+            setText('profile-weekend-text', o.openOnWeekends ? 'Atendemos\nfim de semana' : 'Não atendemos\nfim de semana');
 
             const route = $('profile-route');
             if (route) {

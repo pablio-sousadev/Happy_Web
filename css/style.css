@@ -214,148 +214,63 @@ h1, h2, h3, h4, h5, h6, strong {
 
 /* ================== PROFILE VIEW ================== */
 .profile-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 40px 60px 40px 40px;
-    background: #EBF2F5;
+    flex: 1; height: 100vh; overflow-y: auto;
+    background: #EBF2F5; padding: 40px 24px; font-family: 'Nunito', sans-serif;
 }
-
-.profile-container {
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
-}
-
-.profile-gallery {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-.profile-main-photo {
-    width: 100%;
-    max-width: 800px;
-    height: 400px;
-    object-fit: cover;
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
+.profile-container { max-width: 708px; margin: 0 auto; width: 100%; }
+.profile-title-header { font-size: 18px; font-weight: 600; color: #8FA7B2; text-align: center; margin: 0 0 32px; }
+.profile-card { background: #fff; border: 1px solid #D3E2E5; border-radius: 20px; overflow: hidden; }
+.profile-main-photo { display: block; width: 100%; height: 336px; object-fit: cover; border-radius: 20px 20px 0 0; }
 .profile-thumbs {
-    display: flex;
-    gap: 12px;
-    margin-top: 16px;
-    flex-wrap: wrap;
-    justify-content: center;
+    display: grid; grid-template-columns: repeat(6, 94px); gap: 16px;
+    justify-content: center; margin-top: 32px; padding: 0 32px;
 }
-
+.profile-thumbs button {
+    width: 94px; height: 94px; padding: 0; border: 0; background: transparent;
+    cursor: pointer; border-radius: 20px; overflow: hidden; transition: transform .2s, box-shadow .2s;
+}
+.profile-thumbs button.active { box-shadow: 0 0 0 2px #15C3D6; }
 .profile-thumbs img {
-    width: 80px;
-    height: 80px;
-    object-fit: cover;
-    border-radius: 12px;
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: border-color 0.2s;
+    display: block; width: 100%; height: 100%; object-fit: cover; border-radius: 20px;
+    opacity: .6; transition: opacity .2s;
 }
-
-.profile-thumbs button:hover img,
-.profile-thumbs button:focus-visible img {
-    border-color: var(--color-secondary);
+.profile-thumbs button:hover img, .profile-thumbs button.active img { opacity: 1; }
+.profile-details-body { padding: 64px 80px; }
+.profile-title { font-size: 54px; line-height: 1.1; font-weight: 700; color: #4D6F80; margin: 0 0 24px; }
+.profile-description { font-size: 18px; line-height: 1.6; font-weight: 600; color: #5C8599; margin: 0; }
+.profile-map-box { margin-top: 64px; border: 1px solid #B3DAE2; border-radius: 20px; background: #E5F6FA; overflow: hidden; }
+.profile-map { height: 227px; width: 100%; }
+.profile-map-footer { height: 64px; display: flex; align-items: center; justify-content: center; background: #E5F6FA; border-top: 1px solid #B3DAE2; }
+.profile-map-footer a { color: #0089A5; font-size: 18px; font-weight: 700; text-decoration: none; }
+.profile-map-footer a:hover { text-decoration: underline; color: #006F85; }
+.profile-divider { height: 1px; border: 0; background: #D3E2E5; opacity: 1; margin: 64px 0; }
+.profile-instructions-title { font-size: 36px; line-height: 1.2; font-weight: 700; color: #4D6F80; margin: 0 0 24px; }
+.open-details { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 32px; }
+.open-card span { white-space: pre-line; }
+.open-card {
+    display: flex; flex-direction: column; gap: 16px; padding: 32px 24px;
+    border: 1px solid #B3DAE2; border-radius: 20px; font-size: 18px; line-height: 1.6; font-weight: 600;
+    background: linear-gradient(149.97deg, #E6F7FB 8.13%, #FFFFFF 92.67%); color: #5C8599;
 }
-
-.profile-title {
-    font-size: 48px;
-    font-weight: 900;
-    color: var(--color-primary-dark);
-    margin-bottom: 24px;
-    line-height: 1.1;
+.open-card strong { font-weight: 700; }
+.open-card i { font-size: 32px; color: #15B6D6; line-height: 1; }
+.open-card.weekend.open { background: linear-gradient(154.16deg, #EDFFF6 7.85%, #FFFFFF 91.03%); border-color: #A1E9C5; color: #37C77F; }
+.open-card.weekend.open i { color: #39CC82; }
+.open-card.weekend.closed { background: linear-gradient(154.16deg, #FDF0F5 7.85%, #FFFFFF 91.03%); border-color: #FFBCD4; color: #FF669D; }
+.open-card.weekend.closed i { color: #FF669D; }
+.profile-contact-btn {
+    display: flex; align-items: center; justify-content: center; gap: 16px;
+    margin-top: 64px; height: 64px; border-radius: 20px; background: #3CDC8C; color: #fff;
+    font-size: 18px; font-weight: 800; text-decoration: none; transition: background .2s;
 }
+.profile-contact-btn:hover { background: #36CF82; color: #fff; }
+.profile-contact-btn i { font-size: 24px; }
 
-.profile-description {
-    font-size: 18px;
-    line-height: 28px;
-    color: var(--color-text-base);
-    margin-bottom: 32px;
-}
-
-.profile-map-wrapper {
-    margin-bottom: 32px;
-}
-
-.profile-map {
-    height: 200px;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
-    margin-bottom: 12px;
-}
-
-.profile-route-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 4px;
-    color: var(--color-primary);
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 16px;
-}
-
-.profile-route-link:hover {
-    text-decoration: underline;
-}
-
-.profile-info-cards {
-    gap: 16px;
-}
-
-.profile-info-card {
-    background: #fff;
-    border-radius: 16px;
-    padding: 20px 24px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-}
-
-.profile-info-card strong {
-    font-size: 14px;
-    color: var(--color-text-base);
-    font-weight: 600;
-}
-
-.profile-info-card span {
-    font-size: 18px;
-    font-weight: 700;
-    margin-top: 4px;
-}
-
-.profile-info-card.open {
-    border-left: 4px solid #22c55e;
-}
-
-.profile-info-card.closed {
-    border-left: 4px solid #ef4444;
-}
-
-.profile-whatsapp-btn {
-    background-color: #22c55e;
-    border: none;
-    font-weight: 700;
-    font-size: 18px;
-    padding: 16px;
-    border-radius: 16px;
-    box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
-    transition: transform 0.2s, box-shadow 0.2s;
-}
-
-.profile-whatsapp-btn:hover {
-    background-color: #16a34a;
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(34, 197, 94, 0.4);
-}
-
-.profile-whatsapp-btn i {
-    font-size: 20px;
+@media (max-width: 768px) {
+    .profile-details-body { padding: 32px 24px; }
+    .profile-thumbs { padding: 16px 24px 0; grid-template-columns: repeat(3, 1fr); }
+    .profile-title { font-size: 36px; }
+    .open-details { grid-template-columns: 1fr; }
 }
 
 /* ================== CREATE VIEW ================== */

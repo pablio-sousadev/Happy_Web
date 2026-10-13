@@ -83,47 +83,43 @@
         <!-- Profile Content -->
         <main class="profile-content">
             <div class="profile-container">
-                <!-- Photo Gallery -->
-                <div class="profile-gallery mb-4">
-                    <img id="profile-photo" src="" alt="Foto do orfanato" class="profile-main-photo d-none" loading="lazy">
+                <h1 class="profile-title-header">Orfanato</h1>
+                <div class="profile-card">
+                    <img id="profile-photo" src="" alt="Foto do orfanato" class="profile-main-photo d-none">
                     <div id="profile-thumbs" class="profile-thumbs d-none"></div>
-                </div>
 
-                <!-- Title & Description -->
-                <h1 id="profile-name" class="profile-title"></h1>
-                <p id="profile-about" class="profile-description"></p>
+                    <div class="profile-details-body">
+                        <h2 id="profile-name" class="profile-title"></h2>
+                        <p id="profile-about" class="profile-description"></p>
 
-                <!-- Instructions -->
-                <div class="profile-instructions mb-4">
-                    <strong>Instruções de visita</strong>
-                    <p id="profile-instructions" class="mt-2"></p>
-                </div>
+                        <div class="profile-map-box">
+                            <div id="profile-map" class="profile-map"></div>
+                            <div class="profile-map-footer">
+                                <a id="profile-route" href="#" target="_blank" rel="noopener noreferrer">Ver rotas no Google Maps</a>
+                            </div>
+                        </div>
 
-                <!-- Map Link -->
-                <div class="profile-map-wrapper mb-4">
-                    <div id="profile-map" class="profile-map"></div>
-                    <a id="profile-route" href="#" class="profile-route-link" target="_blank" rel="noopener noreferrer">
-                        <i class="bi bi-arrow-right-circle"></i> Ver rotas no Google Maps
-                    </a>
-                </div>
+                        <hr class="profile-divider">
 
-                <!-- Info Cards -->
-                <div class="profile-info-cards d-flex flex-column gap-3 mb-4">
-                    <div class="profile-info-card">
-                        <strong>Horário de visitas</strong>
-                        <span id="profile-hours" class="mt-1"></span>
+                        <h2 class="profile-instructions-title">Instruções para visita</h2>
+                        <p id="profile-instructions" class="profile-description"></p>
+
+                        <div class="open-details">
+                            <div class="open-card hours">
+                                <i class="bi bi-clock"></i>
+                                <span>Horário de visitas<br><strong id="profile-hours"></strong></span>
+                            </div>
+                            <div id="profile-weekend" class="open-card weekend closed">
+                                <i class="bi bi-info-circle"></i>
+                                <span id="profile-weekend-text"></span>
+                            </div>
+                        </div>
+
+                        <a id="profile-whatsapp" href="#" class="profile-contact-btn" target="_blank" rel="noopener noreferrer">
+                            <i class="bi bi-whatsapp"></i> Entrar em contato
+                        </a>
                     </div>
-                    <div id="profile-weekend" class="profile-info-card closed">
-                        <strong>Atende fim de semana</strong>
-                        <span id="profile-weekend-text" class="mt-1"></span>
-                    </div>
                 </div>
-
-                <!-- WhatsApp Button -->
-                <a id="profile-whatsapp" href="#" class="btn btn-success btn-lg w-100 profile-whatsapp-btn"
-                   target="_blank" rel="noopener noreferrer">
-                    <i class="bi bi-whatsapp me-2"></i> Entrar em contato
-                </a>
             </div>
         </main>
     </div>
