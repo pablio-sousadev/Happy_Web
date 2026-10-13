@@ -215,6 +215,7 @@ h1, h2, h3, h4, h5, h6, strong {
     flex: 1;
     overflow-y: auto;
     padding: 40px 60px 40px 40px;
+    background: #EBF2F5;
 }
 
 .profile-container {
@@ -356,59 +357,93 @@ h1, h2, h3, h4, h5, h6, strong {
 }
 
 /* ================== CREATE VIEW ================== */
+.create-page { display: flex; }
+.app-sidebar-slim {
+    width: 96px; flex-shrink: 0; height: 100vh; position: sticky; top: 0;
+    display: flex; flex-direction: column; justify-content: space-between; align-items: center;
+    padding: 32px 0;
+    background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
+}
+.app-sidebar-slim img { width: 48px; }
+.app-sidebar-slim button {
+    width: 48px; height: 48px; border: 0; border-radius: 16px; cursor: pointer;
+    background: #12AFCB; color: #fff; font-size: 24px;
+    display: flex; align-items: center; justify-content: center; transition: background .2s;
+}
+.app-sidebar-slim button:hover { background: #17D6EB; }
+
 .create-content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 40px 60px 40px 40px;
+    flex: 1; height: 100vh; overflow-y: auto;
+    background: #EBF2F5; padding: 40px 24px;
+}
+.create-form { max-width: 708px; margin: 0 auto; width: 100%; }
+.create-title { font-size: 18px; font-weight: 600; color: #8FA7B2; text-align: center; margin: 0 0 32px; }
+.create-card {
+    background: #fff; border: 1px solid #D3E2E5; border-radius: 20px;
+    padding: 64px 80px; overflow: hidden;
+}
+.form-error { font-weight: 600; font-size: 14px; }
+.form-error:empty { display: none; }
+
+.create-section { border: 0; padding: 0; margin: 0 0 40px; min-width: 0; }
+.create-section legend {
+    float: none; width: 100%; font-size: 32px; font-weight: 700; color: #4D6F80;
+    line-height: 34px; padding-bottom: 24px; margin-bottom: 40px; border-bottom: 1px solid #D3E2E5;
+}
+.field { margin-bottom: 24px; }
+.field > label { display: block; font-weight: 600; color: #8FA7B2; margin-bottom: 8px; }
+.field .hint { font-size: 14px; color: #8FA7B2; font-weight: 400; }
+.field input[type=text], .field input[type=tel], .field textarea {
+    width: 100%; background: #F5F8FA; border: 1px solid #D3E2E5; border-radius: 20px;
+    padding: 16px; color: #5C8599; outline: none; font: inherit;
+}
+.field input[type=text], .field input[type=tel] { height: 64px; }
+.field textarea { min-height: 120px; resize: vertical; }
+.field input:focus, .field textarea:focus { border-color: #15C3D6; background: #F5F8FA; }
+.field input.is-invalid, .field textarea.is-invalid { border-color: #dc3545; }
+
+.map-box { border: 1px solid #D3E2E5; border-radius: 20px; overflow: hidden; margin-bottom: 40px; }
+.create-map { height: 280px; width: 100%; }
+.map-footer {
+    padding: 16px 0; text-align: center; background: #F5F8FA; color: #0089A5;
+    font-weight: 700; border-top: 1px solid #D3E2E5; font-size: 14px;
 }
 
-.create-form {
-    max-width: 800px;
-    margin: 0 auto;
-    width: 100%;
+.photos-grid { display: grid; grid-template-columns: repeat(auto-fill, 96px); gap: 16px; }
+.image-previews { display: contents; }
+.image-previews img { width: 96px; height: 96px; object-fit: cover; border-radius: 20px; }
+.photo-add {
+    width: 96px; height: 96px; margin: 0 !important; cursor: pointer;
+    display: flex !important; align-items: center; justify-content: center;
+    background: #F5F8FA; border: 1px dashed #96D2F0; border-radius: 20px;
+    color: #15B6D6; font-size: 24px;
+}
+.photo-add:hover { background: #EBF2F5; }
+.visually-hidden {
+    position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap;
 }
 
-.form-error {
-    font-weight: 600;
-    font-size: 14px;
-}
-
-.image-previews {
-    gap: 12px;
-}
-
-.image-previews img {
-    width: 64px;
-    height: 64px;
-    object-fit: cover;
-    border-radius: 8px;
-    border: 2px solid #e9ecef;
-}
-
+.button-select { display: grid; grid-template-columns: 1fr 1fr; }
 .toggle-btn {
-    flex: 1;
-    padding: 12px 24px;
-    font-size: 16px;
-    font-weight: 600;
-    border-radius: 12px;
-    transition: all 0.2s;
+    height: 64px; background: #F5F8FA; border: 1px solid #D3E2E5; color: #5C8599;
+    font: inherit; font-weight: 600; cursor: pointer; transition: all .2s;
 }
+.toggle-btn[data-weekend="true"] { border-radius: 20px 0 0 20px; }
+.toggle-btn[data-weekend="false"] { border-radius: 0 20px 20px 0; border-left: 0; }
+.toggle-btn.active[data-weekend="true"] { background: #EDFFF6; border-color: #A1E9C5; color: #37C77F; }
+.toggle-btn.active[data-weekend="false"] { background: #FFE4EE; border-color: #F3B4CA; color: #FF669D; }
+.button-select.is-invalid .toggle-btn { border-color: #dc3545; }
 
-.toggle-btn.active {
-    background-color: var(--color-primary);
-    color: #fff;
-    border-color: var(--color-primary);
+.confirm-button {
+    width: 100%; height: 64px; margin-top: 8px; border: 0; border-radius: 20px;
+    background: #3CDC8C; color: #fff; font-size: 18px; font-weight: 800; cursor: pointer;
+    display: flex; align-items: center; justify-content: center; transition: background .2s;
 }
+.confirm-button:hover { background: #36CF82; }
 
-.toggle-btn.is-invalid,
-.toggle-btn.form-control.is-invalid {
-    border-color: #dc3545;
-}
-
-.create-map {
-    height: 300px;
-    border: 2px dashed #ced4da;
-    border-radius: 12px;
+@media (max-width: 768px) {
+    .create-card { padding: 32px 24px; }
+    .app-sidebar-slim { width: 64px; }
 }
 
 /* ================== LEAFLET POPUP CUSTOMIZATION ================== */
