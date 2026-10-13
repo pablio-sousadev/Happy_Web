@@ -59,24 +59,16 @@
         let markersLayer = null;
 
         function createIcon() {
-            return L.divIcon({
-                className: 'custom-div-icon',
-                html: `<div style="background-color: #15C3D6; width: 48px; height: 48px; border-radius: 20px 20px 0 20px; transform: rotate(45deg); display: flex; align-items: center; justify-content: center; border: 3px solid white; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
-                          <i class="bi bi-emoji-smile-fill" style="color: #FFD666; font-size: 24px; transform: rotate(-45deg);"></i>
-                       </div>`,
-                iconSize: [48, 48],
-                iconAnchor: [24, 48],
-                popupAnchor: [0, -48]
+            return L.icon({
+                iconUrl: 'assets/marker.svg',
+                iconSize: [58, 68],
+                iconAnchor: [29, 68],
+                popupAnchor: [170, 2]
             });
         }
 
         function popupContent(o) {
-            return `
-                <div style="font-family: 'Nunito', sans-serif; padding: 4px;">
-                    <strong style="color: #4D6F80; font-size: 16px;">${escapeHTML(o.name)}</strong><br/>
-                    <span style="color: #5C8599; font-size: 13px;">${escapeHTML(o.address)}</span><br/>
-                    <a href="#profile/${o.id}" data-view="profile/${o.id}" style="color: #15C3D6; text-decoration: none; font-weight: bold; margin-top: 6px; display: inline-block;">Ver detalhes →</a>
-                </div>`;
+            return `<span>${escapeHTML(o.name)}</span><a href="#profile/${o.id}" data-view="profile/${o.id}" aria-label="Ver detalhes de ${escapeHTML(o.name)}"><i class="bi bi-arrow-right"></i></a>`;
         }
 
         function renderMarkers(list) {
@@ -86,7 +78,7 @@
             list.forEach((o) => {
                 if (!Number.isFinite(o.lat) || !Number.isFinite(o.lng)) return;
                 L.marker([o.lat, o.lng], { icon, title: o.name })
-                    .bindPopup(popupContent(o))
+                    .bindPopup(popupContent(o), { closeButton: false, minWidth: 240, className: 'map-popup' })
                     .addTo(markersLayer);
             });
         }
