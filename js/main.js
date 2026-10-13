@@ -61,9 +61,9 @@
         function createIcon() {
             return L.icon({
                 iconUrl: 'assets/marker.svg',
-                iconSize: [58, 68],
-                iconAnchor: [29, 68],
-                popupAnchor: [170, 2]
+                iconSize: [48, 54],
+                iconAnchor: [24, 54],
+                popupAnchor: [160, 2]
             });
         }
 

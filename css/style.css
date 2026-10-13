@@ -130,6 +130,8 @@ h1, h2, h3, h4, h5, h6, strong {
   z-index: 10;
 }
 
+.app-sidebar img { width: 64px; height: auto; display: block; }
+
 .app-sidebar h2 {
   font-size: 40px;
   font-weight: 800;
@@ -364,7 +366,7 @@ h1, h2, h3, h4, h5, h6, strong {
     padding: 32px 0;
     background: linear-gradient(329.54deg, #29B6D1 0%, #00C7C7 100%);
 }
-.app-sidebar-slim img { width: 48px; }
+.app-sidebar-slim img { width: 48px; height: auto; }
 .app-sidebar-slim button {
     width: 48px; height: 48px; border: 0; border-radius: 16px; cursor: pointer;
     background: #12AFCB; color: #fff; font-size: 24px;
